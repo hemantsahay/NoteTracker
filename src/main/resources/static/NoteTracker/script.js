@@ -22,14 +22,14 @@ const insertNotes = function(note){
     noteContainer.insertAdjacentHTML("beforeend",html);
 }
 const getAllNotes = function(){
-    fetch("http://localhost:8080/notes")
+    fetch("/notes")
     .then(r => r.json())
     .then(notes => notes.forEach(item => insertNotes(item)))
 }
 
 const updateNote = function(id){
-    console.log('This is called')
-    const apiUrl = `http://localhost:8080/notes/${id}`;
+    console.log('update is called with short URL')
+    const apiUrl = `/notes/${id}`;
 
     const postData = {
         title: titleEl.value,
@@ -47,13 +47,13 @@ const updateNote = function(id){
 }
 
 const deleteCard = function(id){
-    fetch(`http://localhost:8080/notes/${id}`,{method: 'DELETE'})
+    fetch(`/notes/${id}`,{method: 'DELETE'})
     location.reload();
 }
 
 const UpdateCard = function(id){
     console.log('update button is working')
-    fetch(`http://localhost:8080/notes/${id}`)
+    fetch(`/notes/${id}`)
     .then(r => r.json())
     .then(notes => {
         titleEl.value = notes.title
@@ -70,7 +70,7 @@ const saveNote = function(){
 
 const insertNote = function(){
     console.log('Save is Clicked')
-    const apiUrl = 'http://localhost:8080/notes';
+    const apiUrl = '/notes';
 
     const postData = {
         title: titleInsertEl.value,
@@ -87,6 +87,5 @@ const insertNote = function(){
     titleEl.value = descEl.value = '';
     location.reload();
 }
-
 
 getAllNotes();

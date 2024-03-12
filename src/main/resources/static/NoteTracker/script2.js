@@ -3,8 +3,7 @@ const descEl = document.getElementById("description");
 const titleEl = document.getElementById("title");
 
 const addNote = function(){
-    console.log('This is called')
-    const apiUrl = 'http://localhost:8080/notes';
+    const apiUrl = '/notes';
 
     const postData = {
         title: titleEl.value,
